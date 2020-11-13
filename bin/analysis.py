@@ -51,7 +51,7 @@ for label, y in (
         df, x='x1', y='x2', z='x3', 
         color='structure',
         hover_name='label')
-    fig.write_html('structures-{}.html'.format(label))
+    fig.write_html('site/structures-{}.html'.format(label))
 
-    with open('expressions-{}.csv'.format(label), 'w') as fp:
+    with open('site/expressions-{}.csv'.format(label), 'w') as fp:
         fp.write(','.join(ft.T.index[dimred.get_support()]))
