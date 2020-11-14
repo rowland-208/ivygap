@@ -54,4 +54,8 @@ for label, y in (
     fig.write_html('site/structures-{}.html'.format(label))
 
     with open('site/expressions-{}.csv'.format(label), 'w') as fp:
-        fp.write(','.join(ft.T.index[dimred.get_support()]))
+        fp.write('Feature,Importance\n')
+        for (v, f) in sorted(zip(
+                clf.feature_importances_[dimred.get_support()],
+                ft.T.index[dimred.get_support()]), reverse=True):
+            fp.write('{},{}\n'.format(f,v))
