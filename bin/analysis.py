@@ -21,18 +21,18 @@ for label, y in (
         *((key, np.where(y0==key, key, 'Other')) for key in np.unique(y0))):
 
     clf = ExtraTreesClassifier(
-        n_estimators=500, random_state=2,
-        max_depth=10, criterion='entropy',
+        n_estimators=50, random_state=2,
+        max_depth=5, criterion='entropy',
         min_impurity_decrease=0.05)
     clf.fit(X, y)
-    print('Score: ', clf.score(X, y))
+    print(label, 'score: ', clf.score(X, y))
 
     dimred = SelectFromModel(clf, prefit=True, max_features=50)
     X_new = dimred.transform(X)
 
     tsne = TSNE(
         n_components=3,
-        n_iter=10000, learning_rate=40.,
+        n_iter=10000, learning_rate=20.,
         early_exaggeration=20.,
         perplexity=30., random_state=0)
     X_3d = tsne.fit_transform(X_new, y)
