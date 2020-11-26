@@ -83,7 +83,7 @@ for label, y in (
             columns=['count', 'max'])
     df1 = df0.groupby('transcripts').apply(f).reset_index()
     df1['frequency'] = df1['count']/trials
-    df1['selection'] = (df1['max']>0.019)|(df1['frequency']>0.1)
+    df1['selection'] = (df1['max']>0.101)|(df1['frequency']>0.06)
     fig1 = px.scatter(
         df1,
         x='frequency', y='max',
@@ -94,9 +94,6 @@ for label, y in (
             'frequency': 'Frequency',
             'max': 'Importance',
             'selection': 'Selected'})
-    fig1.update_layout(
-        xaxis=dict(range=[0,0.16]),
-        yaxis=dict(range=[0.004,0.03]))
 
     df2 = df1[df1['selection']==True]
     df2.to_csv('site/montecarlo-expressions-{}_control.csv'.format(label))
