@@ -1,5 +1,4 @@
 #%%
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import plotly.express as px
@@ -39,7 +38,7 @@ for label, y in (
     sl['{}_importance'.format(label)] = clf.feature_importances_
 
 #%%
-sl.to_csv('../data/montecarlo-expression-All.csv')
+sl.to_csv('../data/montecarlo-expressions-All.csv')
 
 #%%
 df = pd.DataFrame()
